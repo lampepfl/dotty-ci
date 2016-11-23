@@ -1,0 +1,12 @@
+DRONE_GITHUB=true
+DRONE_GITHUB_CLIENT=<client here>
+DRONE_GITHUB_SECRET=<secret here>
+
+DRONE_ORGS=lampepfl
+DRONE_OPEN=true
+DRONE_ADMIN_ALL=true
+
+DRONE_AGENT_SECRET=<agent secret here>
+
+DATABASE_DRIVER=sqlite3
+DATABASE_CONFIG=/var/lib/drone/drone.sqlite
