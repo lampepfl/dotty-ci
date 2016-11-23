@@ -1,7 +1,7 @@
 # Use alpine as base for Docker image
 FROM alpine:3.4
 
-# Add git to image
+# Add necessary packages to image:
 RUN apk add --update git && \
     apk add curl && \
     apk add bash && \
