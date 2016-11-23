@@ -37,19 +37,18 @@ setting for the amount of jobs that it can accept. The main server
 Dotty Docker Image
 ------------------
 This docker image is set up in order to run the tests for Dotty. It is
-currently pushed to `felixmulder/dotty` on Docker hub. But this should in due
-time be changed to a `lampepfl` organization.
+currently pushed to `lampepfl/dotty` on Docker hub.
 
 To update the image, simply:
 
 ```
 $ tar -zxvf ivy2.tar.gz
 $ sudo su
-# docker build -t felixmulder/dotty .
+# docker build -t lampepfl/dotty .
 <some-tag-hash-here>
-# docker push felixmulder/dotty:latest
-# docker tag <some-tag-hash-here> felixmulder/dotty:0.1
-# docker push felixmulder/dotty:0.1
+# docker push lampepfl/dotty:latest
+# docker tag <some-tag-hash-here> lampepfl/dotty:0.1
+# docker push lampepfl/dotty:0.1
 ```
 
 Currently the cache is r/w by all users of the image - which should be defined
