@@ -37,7 +37,8 @@ setting for the amount of jobs that it can accept. The main server
 Dotty Docker Image
 ------------------
 This docker image is set up in order to run the tests for Dotty. It is
-currently pushed to `lampepfl/dotty` on Docker hub.
+currently pushed to [lampepfl/dotty](https://hub.docker.com/r/lampepfl/dotty/)
+on Docker hub.
 
 To update the image, simply:
 
