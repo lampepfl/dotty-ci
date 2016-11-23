@@ -34,6 +34,21 @@ Depending on which server the agent is running on, it should have a different
 setting for the amount of jobs that it can accept. The main server
 `lampsrv9.epfl.ch` can currently accept 20 jobs at once.
 
+### Repo Installation ###
+The Dotty repo contains a
+[.drone.yml](https://github.com/lampepfl/dotty/blob/master/.drone.yml)-file
+that contains the necessary settings for drone to run the CI.
+
+The repo is then activated via the UI on http://dotty-ci.epfl.ch or from the
+commandline using:
+
+```
+$ drone repo add lampepfl/dotty
+```
+
+Installation instructions for the
+[drone](http://readme.drone.io/0.5/install/cli/) command
+
 Dotty Docker Image
 ------------------
 This docker image is set up in order to run the tests for Dotty. It is
