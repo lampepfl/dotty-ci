@@ -60,11 +60,11 @@ To update the image, simply:
 ```
 $ tar -zxvf ivy2.tar.gz
 $ sudo su
-# docker build -t lampepfl/dotty .
+# docker build --no-cache -t lampepfl/dotty .
 <some-tag-hash-here>
 # docker push lampepfl/dotty:latest
 # docker tag <some-tag-hash-here> lampepfl/dotty:0.1
-# docker push lampepfl/dotty:0.1
+# docker push lampepfl/dotty:0.2
 ```
 
 Currently the cache is r/w by all users of the image - which should be defined
