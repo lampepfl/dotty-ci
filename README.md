@@ -2,6 +2,30 @@ Dotty Drone Testing
 ===================
 This repo contains the necessary infrastructure for testing Dotty using Drone.
 
+Restarting Drone
+----------------
+First kill the agent:
+```
+$ ssh drone@lampsrv9.epfl.ch # this is the agent
+$ docker kill drone-agent && docker rm drone-agent
+```
+
+Then restart the drone server:
+```
+$ ssh drone@lampsrv43.epfl.ch # this is master
+$ ./drone.sh restart
+```
+
+Then start the agent again:
+```
+$ ssh drone@lampsrv9.epfl.ch
+$ ./drone-agent.sh
+$ docker logs drone-agent
+```
+
+The last command should tell you that it connected to its master, now all
+should be well again in the world.
+
 Setting up Drone
 ----------------
 
