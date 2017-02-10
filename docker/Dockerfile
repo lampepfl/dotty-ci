@@ -6,7 +6,8 @@ RUN apk add --update git && \
     apk add curl && \
     apk add bash && \
     apk add openjdk8 && \
-    apk add openjdk8-doc
+    apk add openjdk8-doc && \
+    apk add expect
 
 # Set sbt and java env vars
 ENV SBT_VERSION 0.13.11
@@ -21,7 +22,7 @@ RUN curl -sL "http://dl.bintray.com/sbt/native-packages/sbt/$SBT_VERSION/sbt-$SB
 WORKDIR /var/cache/drone
 
 # Clone the modified standard library for testing, then `ln` it via the .drone.yml file
-RUN git clone -b dotty-library https://github.com/DarkDimius/scala.git scala-scala
+RUN git clone --depth 1 -b dotty-library https://github.com/DarkDimius/scala.git scala-scala
 
 # Add ivy2 cache
 COPY ivy2/ ivy2
