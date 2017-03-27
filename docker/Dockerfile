@@ -10,7 +10,7 @@ RUN apk add --update git && \
     apk add expect
 
 # Set sbt and java env vars
-ENV SBT_VERSION 0.13.11
+ENV SBT_VERSION 0.13.14-RC2
 ENV SBT_HOME /usr/local/sbt
 ENV PATH ${PATH}:${SBT_HOME}/bin
 ENV PATH ${PATH}:/usr/lib/jvm/java-1.8-openjdk/bin
