@@ -95,3 +95,20 @@ Currently the cache is r/w by all users of the image - which should be defined
 since the container is destroyed between tests. The ivy2 archive is a clean cache
 from running compile on all subprojects in the Dotty repo. It is maintained using
 `git lfs` which should be installed to handle updating of the archive.
+
+### Creating the docker image on macOS ###
+Installing docker is a bit more involved, easiest way is to:
+
+```
+$ brew install docker docker-machine
+```
+
+Then to start the docker machine VM using virtualbox:
+
+```
+$ docker-machine create --driver virtualbox dev
+$ eval $(docker-machine env dev)
+```
+
+Now you can run docker commands from [above](#dotty-docker-image) ignoring the
+call to `su`.
