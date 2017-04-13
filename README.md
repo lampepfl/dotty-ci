@@ -87,7 +87,7 @@ $ sudo su
 # docker build --no-cache -t lampepfl/dotty .
 <some-tag-hash-here>
 # docker push lampepfl/dotty:latest
-# docker tag <some-tag-hash-here> lampepfl/dotty:0.1
+# docker tag <some-tag-hash-here> lampepfl/dotty:0.2
 # docker push lampepfl/dotty:0.2
 ```
 
