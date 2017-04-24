@@ -1,5 +1,5 @@
 # Use alpine as base for Docker image
-FROM alpine:3.4
+FROM alpine:3.5
 
 # Add necessary packages to image:
 RUN apk add --update git && \
@@ -25,7 +25,10 @@ WORKDIR /var/cache/drone
 RUN git clone --depth 1 -b dotty-library https://github.com/DarkDimius/scala.git scala-scala
 
 # Add ivy2 cache
-COPY ivy2/ ivy2
+RUN git clone --recursive --depth 1 https://github.com/lampepfl/dotty.git dotty
+RUN bash -c 'cd dotty; sbt ";compile ;test:compile"'
+RUN rm -rf dotty
+RUN mv ~/.ivy2 /var/cache/drone/ivy2
 
 # Make cache rw by all users (drone adds user 'drone', doesn't exist yet)
 RUN chmod -R 0777 /var/cache/drone/ivy2
