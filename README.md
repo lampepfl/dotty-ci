@@ -79,16 +79,15 @@ This docker image is set up in order to run the tests for Dotty. It is
 currently pushed to [lampepfl/dotty](https://hub.docker.com/r/lampepfl/dotty/)
 on Docker hub.
 
-To update the image, simply:
+To build the image, simply:
 
 ```
-$ tar -zxvf ivy2.tar.gz
+$ cd docker
 $ sudo su
 # docker build --no-cache -t lampepfl/dotty .
 <some-tag-hash-here>
-# docker push lampepfl/dotty:latest
-# docker tag <some-tag-hash-here> lampepfl/dotty:0.2
-# docker push lampepfl/dotty:0.2
+# docker tag <some-tag-hash-here> lampepfl/dotty:01-01-2020
+# docker push lampepfl/dotty:01-01-2020
 ```
 
 Currently the cache is r/w by all users of the image - which should be defined
