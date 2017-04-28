@@ -1,6 +1,6 @@
-Dotty Drone Testing
+Drone Testing
 ===================
-This repo contains the necessary infrastructure for testing Dotty using Drone.
+This repo contains the necessary infrastructure for testing using Drone.
 
 Restarting Drone
 ----------------
