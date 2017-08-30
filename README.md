@@ -82,18 +82,16 @@ on Docker hub.
 To build the image, simply:
 
 ```
-$ cd docker
+$ cd dotty-docker
 $ sudo su
 # docker build --no-cache -t lampepfl/dotty .
 <some-tag-hash-here>
-# docker tag <some-tag-hash-here> lampepfl/dotty:01-01-2020
-# docker push lampepfl/dotty:01-01-2020
+# docker tag <some-tag-hash-here> lampepfl/dotty:$(date +%F)
+# docker login
+# docker push lampepfl/dotty:$(date +%F)
 ```
 
-Currently the cache is r/w by all users of the image - which should be defined
-since the container is destroyed between tests. The ivy2 archive is a clean cache
-from running compile on all subprojects in the Dotty repo. It is maintained using
-`git lfs` which should be installed to handle updating of the archive.
+The new image should now appear in <https://hub.docker.com/r/lampepfl/dotty/tags/>. The next step is to open a PR againts <https://github.com/lampepfl/dotty> to change the tag of the docker image in `.drone.yml`.
 
 ### Creating the docker image on macOS ###
 Installing docker is a bit more involved, easiest way is to:
