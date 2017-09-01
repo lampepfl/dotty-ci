@@ -14,13 +14,13 @@ To learn more about Compose refer to the [documentation](https://docs.docker.com
 Setting up Drone
 ----------------
 
-The [.docker-compose.yml] file defines the docker configuration for our Drone application. The
-`docker-compose`(https://docs.docker.com/compose/reference/overview/) CLI lets you manage your
+The [docker-compose.yml](drone/docker-compose.yml) file defines the docker configuration for our Drone application. The
+[docker-compose](https://docs.docker.com/compose/reference/overview/) CLI lets you manage your
 application life-cycle.
 
 ### Starting / Restarting Drone ###
 
-```
+```bash
 $ ssh drone@lampsrv9.epfl.ch
 $ cd drone
 $ docker-compose up --force-recreate -d
@@ -31,13 +31,13 @@ $ docker-compose up --force-recreate -d
 
 ### Repo Installation ###
 The Dotty repo contains a
-[.drone.yml](https://github.com/lampepfl/dotty/blob/master/.drone.yml)-file
+[.drone.yml](https://github.com/lampepfl/dotty/blob/master/.drone.yml) file
 that contains the necessary settings for drone to run the CI.
 
 The repo is then activated via the UI on http://dotty-ci.epfl.ch or from the
 commandline using:
 
-```
+```bash
 $ drone repo add lampepfl/dotty
 ```
 
@@ -47,13 +47,13 @@ Installation instructions for the
 ### Secrets Management ###
 Drone provides the ability to store sensitive information such as passwords.
 Secrets are loaded as environment variables. For example the secret named `sonatype_user` can be
-accessed via `"$SONATYPE_USER"`. Use lower case to name your secrets and upper case to access its
+accessed via `"$SONATYPE_USER"`. Use lower case to name your secrets and upper case to access their
 value.
 
 You can add secrests to a build via the UI on http://dotty-ci.epfl.ch or
 from the command line using:
 
-```
+```bash
 $ drone secert add --repository=lampepfl/dotty --name=<name> --value=<value>
 ```
 
@@ -65,7 +65,7 @@ on Docker hub.
 
 To build the image, simply:
 
-```
+```bash
 $ cd dotty-docker
 $ sudo su
 # docker build --no-cache -t lampepfl/dotty .
