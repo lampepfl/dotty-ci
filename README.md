@@ -1,62 +1,33 @@
 Drone Testing
 ===================
+
 This repo contains the necessary infrastructure for testing using Drone.
 
-Restarting Drone
-----------------
-First kill the agent:
-```
-$ ssh drone@lampsrv9.epfl.ch # this is the agent
-$ docker kill drone-agent && docker rm drone-agent
-```
+Prerequisites
+-------------
+[Docker](https://docs.docker.com/engine/installation/) version 17.06 or higher and
+[Docker Compose](https://docs.docker.com/compose/install/) must be installed.
 
-Then restart the drone server:
-```
-$ ssh drone@lampsrv43.epfl.ch # this is master
-$ ./drone.sh restart
-```
-
-Then start the agent again:
-```
-$ ssh drone@lampsrv9.epfl.ch
-$ ./drone-agent.sh
-$ docker logs drone-agent
-```
-
-The last command should tell you that it connected to its master, now all
-should be well again in the world.
+Docker Compose is a tool for defining and running multi-container Docker applications.
+To learn more about Compose refer to the [documentation](https://docs.docker.com/compose/).
 
 Setting up Drone
 ----------------
 
-### Broker Installation ###
-```
-docker pull drone/drone:0.5
-```
+The [.docker-compose.yml] file defines the docker configuration for our Drone application. The
+`docker-compose`(https://docs.docker.com/compose/reference/overview/) CLI lets you manage your
+application life-cycle.
 
-then use the script from [server](drone/server/drone.sh) to start drone with:
-
-```
-./drone.sh start
-```
-
-To the script also accepts the arguments `stop` and `restart`.
-
-### Agent Installation ###
-```
-docker pull drone/drone:0.5
-```
-
-then use the script from [agent](drone/agent/drone-agent.sh) to start drone
-with:
+### Starting / Restarting Drone ###
 
 ```
-./drone-agent.sh
+$ ssh drone@lampsrv9.epfl.ch
+$ cd drone
+$ docker-compose up --force-recreate -d
 ```
 
-Depending on which server the agent is running on, it should have a different
-setting for the amount of jobs that it can accept. The main server
-`lampsrv9.epfl.ch` can currently accept 20 jobs at once.
+`force-recreate` recreates containers even if their configuration and image haven't changed.
+`d` runs containers in the background and prints new container names.
 
 ### Repo Installation ###
 The Dotty repo contains a
@@ -71,7 +42,20 @@ $ drone repo add lampepfl/dotty
 ```
 
 Installation instructions for the
-[drone](http://readme.drone.io/0.5/install/cli/) command
+[drone](http://readme.drone.io/usage/getting-started-cli/) command.
+
+### Secrets Management ###
+Drone provides the ability to store sensitive information such as passwords.
+Secrets are loaded as environment variables. For example the secret named `sonatype_user` can be
+accessed via `"$SONATYPE_USER"`. Use lower case to name your secrets and upper case to access its
+value.
+
+You can add secrests to a build via the UI on http://dotty-ci.epfl.ch or
+from the command line using:
+
+```
+$ drone secert add --repository=lampepfl/dotty --name=<name> --value=<value>
+```
 
 Dotty Docker Image
 ------------------
@@ -91,21 +75,6 @@ $ sudo su
 # docker push lampepfl/dotty:$(date +%F)
 ```
 
-The new image should now appear in <https://hub.docker.com/r/lampepfl/dotty/tags/>. The next step is to open a PR againts <https://github.com/lampepfl/dotty> to change the tag of the docker image in `.drone.yml`.
-
-### Creating the docker image on macOS ###
-Installing docker is a bit more involved, easiest way is to:
-
-```
-$ brew install docker docker-machine
-```
-
-Then to start the docker machine VM using virtualbox:
-
-```
-$ docker-machine create --driver virtualbox dev
-$ eval $(docker-machine env dev)
-```
-
-Now you can run docker commands from [above](#dotty-docker-image) ignoring the
-call to `su`.
+The new image should now appear in <https://hub.docker.com/r/lampepfl/dotty/tags/>.
+The next step is to open a PR againts <https://github.com/lampepfl/dotty> to change the tag of
+the docker image in [.drone.yml](https://github.com/lampepfl/dotty/blob/master/.drone.yml).
