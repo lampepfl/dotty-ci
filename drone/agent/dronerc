@@ -1,3 +1,0 @@
-DRONE_SERVER=ws://dotty-ci.epfl.ch/ws/broker
-DRONE_SECRET=<drone secret here from server>
-DOCKER_MAX_PROCS=20
