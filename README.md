@@ -22,7 +22,7 @@ application life-cycle.
 
 ```bash
 $ ssh drone@lampsrv9.epfl.ch
-$ cd drone
+$ cd dotty-drone/drone/
 $ docker-compose up --force-recreate -d
 ```
 
@@ -68,11 +68,11 @@ To build the image, simply:
 ```bash
 $ cd dotty-docker
 $ sudo su
-# docker build --no-cache -t lampepfl/dotty .
+$ docker build --no-cache -t lampepfl/dotty .
 <some-tag-hash-here>
-# docker tag <some-tag-hash-here> lampepfl/dotty:$(date +%F)
-# docker login
-# docker push lampepfl/dotty:$(date +%F)
+$ docker tag <some-tag-hash-here> lampepfl/dotty:$(date +%F)
+$ docker login
+$ docker push lampepfl/dotty:$(date +%F)
 ```
 
 The new image should now appear in <https://hub.docker.com/r/lampepfl/dotty/tags/>.
