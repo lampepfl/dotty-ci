@@ -50,7 +50,7 @@ Secrets are loaded as environment variables. For example the secret named `sonat
 accessed via `"$SONATYPE_USER"`. Use lower case to name your secrets and upper case to access their
 value.
 
-You can add secrests to a build via the UI on http://dotty-ci.epfl.ch or
+You can add secrets to a build via the UI on http://dotty-ci.epfl.ch or
 from the command line using:
 
 ```bash
