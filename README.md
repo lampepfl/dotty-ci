@@ -70,10 +70,7 @@ To build the image, simply:
 
 ```bash
 $ cd dotty-docker
-$ sudo su
-$ docker build --no-cache -t lampepfl/dotty .
-<some-tag-hash-here>
-$ docker tag <some-tag-hash-here> lampepfl/dotty:$(date +%F)
+$ docker build --no-cache -t lampepfl/dotty:$(date +%F) .
 $ docker login
 $ docker push lampepfl/dotty:$(date +%F)
 ```
