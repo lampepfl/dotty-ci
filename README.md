@@ -29,6 +29,9 @@ $ docker-compose up --force-recreate -d
 `force-recreate` recreates containers even if their configuration and image haven't changed.
 `d` runs containers in the background and prints new container names.
 
+### Monitoring ###
+http://tresormon.epfl.ch/munin/epfl.ch/lampsrv9.epfl.ch/cpu.html
+
 ### Repo Installation ###
 The Dotty repo contains a
 [.drone.yml](https://github.com/lampepfl/dotty/blob/master/.drone.yml) file
