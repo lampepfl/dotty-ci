@@ -26,7 +26,7 @@ RUN git clone --depth 1 -b dotty-library https://github.com/DarkDimius/scala.git
 
 # Add ivy2 cache
 RUN git clone --recursive --depth 1 https://github.com/lampepfl/dotty.git dotty
-RUN bash -c 'cd dotty; sbt ";compile ;test:compile"'
+RUN bash -c 'cd dotty; sbt ";test:compile ;dotty-bootstrapped/test:compile"'
 RUN rm -rf dotty
 RUN mv ~/.ivy2 /var/cache/drone/ivy2
 
