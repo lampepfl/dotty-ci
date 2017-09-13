@@ -12,7 +12,7 @@ services:
     environment:
       - DRONE_OPEN=true
       - DRONE_ORGS=lampepfl
-      - DRONE_ADMIN=felixmulder,smarter,DarkDimius,NicolasStucki,odersky,liufengyun,OlivierBlanvillain,allanrenucci
+      - DRONE_ADMIN=felixmulder,smarter,DarkDimius,NicolasStucki,odersky,liufengyun,OlivierBlanvillain,allanrenucci,gsps
       - DRONE_HOST=http://dotty-ci.epfl.ch
       - DRONE_GITHUB=true
       - DRONE_GITHUB_CLIENT=<client here>
