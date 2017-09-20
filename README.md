@@ -57,7 +57,7 @@ You can add secrets to a build via the UI on http://dotty-ci.epfl.ch or
 from the command line using:
 
 ```bash
-$ drone secert add --repository=lampepfl/dotty --name=<name> --value=<value>
+$ drone secret add --repository=lampepfl/dotty --name=<name> --value=<value>
 ```
 
 Dotty Docker Image
