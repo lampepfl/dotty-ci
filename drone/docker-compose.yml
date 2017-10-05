@@ -28,6 +28,6 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     environment:
       - DRONE_TIMEOUT=10m
-      - DRONE_MAX_PROCS=4
+      - DRONE_MAX_PROCS=3
       - DRONE_SERVER=drone-server:9000
       - DRONE_SECRET=<server/agent secret here>

@@ -21,12 +21,9 @@ RUN curl -sL "http://dl.bintray.com/sbt/native-packages/sbt/$SBT_VERSION/sbt-$SB
 
 WORKDIR /var/cache/drone
 
-# Clone the modified standard library for testing, then `ln` it via the .drone.yml file
-RUN git clone --depth 1 -b dotty-library https://github.com/DarkDimius/scala.git scala-scala
-
 # Add ivy2 cache
 RUN git clone --recursive --depth 1 https://github.com/lampepfl/dotty.git dotty
-RUN bash -c 'cd dotty; sbt ";test:compile ;dotty-bootstrapped/test:compile"'
+RUN bash -c 'cd dotty; sbt ";test:update ;dotty-bootstrapped/test:update ;sbt-dotty/scripted:update"'
 RUN rm -rf dotty
 RUN mv ~/.ivy2 /var/cache/drone/ivy2
 
