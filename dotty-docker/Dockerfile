@@ -6,8 +6,7 @@ RUN apk add --update git && \
     apk add curl && \
     apk add bash && \
     apk add openjdk8 && \
-    apk add openjdk8-doc && \
-    apk add expect
+    apk add openjdk8-doc
 
 # Set sbt and java env vars
 ENV SBT_VERSION 0.13.15
