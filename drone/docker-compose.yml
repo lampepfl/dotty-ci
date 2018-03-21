@@ -2,7 +2,7 @@ version: '2'
 
 services:
   drone-server:
-    image: drone/drone:0.8.2
+    image: drone/drone:0.8
     ports:
       - 80:8000
       - 9000:9000
@@ -15,12 +15,13 @@ services:
       - DRONE_ADMIN=felixmulder,smarter,DarkDimius,NicolasStucki,odersky,liufengyun,OlivierBlanvillain,allanrenucci,gsps,Duhemm
       - DRONE_HOST=http://dotty-ci.epfl.ch
       - DRONE_GITHUB=true
+      - DRONE_GITHUB_MERGE_REF=false
       - DRONE_GITHUB_CLIENT=<client here>
       - DRONE_GITHUB_SECRET=<secret here>
       - DRONE_SECRET=<server/agent secret here>
 
   drone-agent:
-    image: drone/agent:0.8.2
+    image: drone/agent:0.8
     restart: always
     depends_on:
       - drone-server
