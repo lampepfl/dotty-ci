@@ -9,7 +9,7 @@ RUN apk add --update git && \
     apk add openjdk8-doc
 
 # Set sbt and java env vars
-ENV SBT_VERSION 1.1.1
+ENV SBT_VERSION 1.1.2
 ENV SBT_HOME /usr/local/sbt
 ENV PATH ${PATH}:${SBT_HOME}/bin
 ENV PATH ${PATH}:/usr/lib/jvm/java-1.8-openjdk/bin
