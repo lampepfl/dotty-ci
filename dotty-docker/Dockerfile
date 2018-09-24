@@ -8,7 +8,7 @@ RUN apt-get update && \
     apt-get upgrade -y && \
     # Enable pre-release openjdk 11, remove the next line once openjdk 11 has been released and Ubuntu updates its package.
     apt-get install -y software-properties-common && add-apt-repository ppa:openjdk-r/ppa && \
-    apt-get install -y bash curl git ssh htop openjdk-8-jdk-headless openjdk-11-jdk-headless nano vim-tiny zile nodejs-legacy && \
+    apt-get install -y bash curl git ssh htop openjdk-8-jdk-headless openjdk-11-jdk-headless nano vim-tiny zile nodejs && \
     update-java-alternatives --set java-1.8.0-openjdk-amd64
 
 # Set sbt env variables
