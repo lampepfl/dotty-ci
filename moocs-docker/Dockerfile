@@ -27,10 +27,13 @@ WORKDIR /var/cache/drone
 
 # Add ivy2 cache, this requires "sshkey" to be present in the current directory and be a key that can clone the repo
 RUN --mount=type=secret,id=sshkey,dst=/root/.ssh/id_rsa GIT_SSH_COMMAND="ssh -o StrictHostKeyChecking=accept-new" git clone --depth=1 git@github.com:lampepfl-courses/moocs.git
+
+# Used by script/ci-sbt to determine how to run sbt
+ENV DRONE 1
+
 RUN (cd moocs && \
-     sbt ";test:update;progfun2/createHandout example" && \
+     ./script/ci-sbt ";test:update" && ./script/ci-hook progfun2 \
      echo "moocs: $(git rev-parse HEAD)" >> /root/.versions) && \
     rm -rf moocs && \
-    mv ~/.ivy2 /var/cache/drone/ivy2 && \
     # Make cache rw by all users (drone adds user 'drone', doesn't exist yet)
-    chmod -R 0777 /var/cache/drone/ivy2 
+    chmod -R 0777 /var/cache/drone/ivy2
