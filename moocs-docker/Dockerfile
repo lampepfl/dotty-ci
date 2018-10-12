@@ -21,7 +21,15 @@ ENV PATH ${PATH}:/usr/lib/jvm/java-1.8-openjdk/bin
 
 # Install sbt
 RUN curl -sL "https://github.com/sbt/sbt/releases/download/v$SBT_VERSION/sbt-$SBT_VERSION.tgz" | gunzip | tar -x -C /usr/local && \
-    echo -ne "- with sbt $SBT_VERSION\n" >> /root/.built
+    echo "sbt: $SBT_VERSION" >> /root/.versions
+
+## Install coursier and scalafix
+ENV COURSIER_CACHE /var/cache/drone/coursier
+ENV PATH ${HOME}/bin:${PATH}
+WORKDIR ${HOME}/bin
+RUN curl -L -o coursier https://git.io/coursier && chmod +x coursier && \
+    coursier bootstrap ch.epfl.scala:scalafix-cli_2.12.7:0.9.0 -f --main scalafix.cli.Cli -o scalafix
+
 
 WORKDIR /var/cache/drone
 
@@ -36,4 +44,4 @@ RUN (cd moocs && \
      echo "moocs: $(git rev-parse HEAD)" >> /root/.versions) && \
     rm -rf moocs && \
     # Make cache rw by all users (drone adds user 'drone', doesn't exist yet)
-    chmod -R 0777 /var/cache/drone/ivy2
+    chmod -R 0777 /var/cache/drone
