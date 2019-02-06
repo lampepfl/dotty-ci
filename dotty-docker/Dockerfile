@@ -12,7 +12,7 @@ RUN apt-get update && \
     update-java-alternatives --set java-1.8.0-openjdk-amd64
 
 # Set sbt env variables
-ENV SBT_VERSION 1.2.3
+ENV SBT_VERSION 1.2.7
 ENV SBT_HOME /usr/local/sbt
 ENV PATH ${SBT_HOME}/bin:${PATH}
 
