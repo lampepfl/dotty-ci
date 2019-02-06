@@ -25,9 +25,11 @@ WORKDIR /var/cache/drone
 # Add ivy2 cache
 RUN git clone -b master --recursive https://github.com/lampepfl/dotty.git && \
     (cd dotty && \
-     sbt ";test:update ;dotty-bootstrapped/test:update ;sbt-dotty/scripted:update" && \
+     sbt ";test:update ;dotty-bootstrapped/test:update ;sbt-dotty/scripted:update ;community-build/test" && \
      echo "dotty: $(git rev-parse HEAD)" >> /root/.versions) && \
     rm -rf dotty && \
+    # Remove all published-local artifacts
+    rm -rf ~/.ivy2/local/ch.epfl.lamp && \
     mv ~/.ivy2 /var/cache/drone/ivy2 && \
     # Make cache rw by all users (drone adds user 'drone', doesn't exist yet)
     chmod -R 0777 /var/cache/drone/ivy2
