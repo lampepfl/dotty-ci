@@ -78,3 +78,23 @@ $ docker push lampepfl/dotty:$(date +%F)
 The new image should now appear in <https://hub.docker.com/r/lampepfl/dotty/tags/>.
 The next step is to open a PR againts <https://github.com/lampepfl/dotty> to change the tag of
 the docker image in [.drone.yml](https://github.com/lampepfl/dotty/blob/master/.drone.yml).
+
+EPFL courses Image
+------------------
+This docker image is set up in order to run the CI for courses given at EPFL with Dotty. It is
+currently pushed to [lampepfl/moocs-dotty](https://hub.docker.com/r/lampepfl/moocs-dotty/)
+on Docker hub.
+
+To build the image, you'll need Docker >= 18.09 and access to the lampepfl/moocs repository:
+
+```bash
+$ cd moocs-docker
+# Make an unencrypted copy of your private key to clone the private moocs repository
+$ openssl rsa -in ~/.ssh/id_rsa -out ssl.key
+# Build the image using --secret to make sure your private key is not saved in the image
+$ DOCKER_BUILDKIT=1 docker build --no-cache --secret id=sshkey,src=ssl.key -t lampepfl/moocs-dotty:$(date +%F) .
+# Delete the unencrypted copy of your private key
+$ rm ssl.key
+$ docker login
+$ docker push lampepfl/moocs-dotty:$(date +%F)
+```

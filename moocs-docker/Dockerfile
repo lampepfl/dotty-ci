@@ -1,4 +1,4 @@
-# syntax = tonistiigi/dockerfile:secrets20180808
+# syntax=docker/dockerfile:1.0.0-experimental
 FROM ubuntu:18.04
 
 # The default locale is "POSIX" which is just ASCII.
@@ -14,7 +14,7 @@ RUN apt-get update && \
     update-java-alternatives --set java-1.8.0-openjdk-amd64
 
 # Set sbt and java env vars
-ENV SBT_VERSION 1.2.3
+ENV SBT_VERSION 1.2.7
 ENV SBT_HOME /usr/local/sbt
 ENV PATH ${PATH}:${SBT_HOME}/bin
 ENV PATH ${PATH}:/usr/lib/jvm/java-1.8-openjdk/bin
@@ -40,7 +40,8 @@ RUN --mount=type=secret,id=sshkey,dst=/root/.ssh/id_rsa GIT_SSH_COMMAND="ssh -o 
 ENV DRONE 1
 
 RUN (cd moocs && \
-     ./script/ci-sbt ";test:update" && ./script/ci-hook progfun2 \
+     ./script/ci-sbt ";test:update" && ./script/ci-hook progfun2 && ./script/ci-hook parprog1 && ./script/ci-hook concpar && ./script/ci-hook reactive && \
+     # ./script/ci-hook bigdata && \ ## currently failing
      echo "moocs: $(git rev-parse HEAD)" >> /root/.versions) && \
     rm -rf moocs && \
     # Make cache rw by all users (drone adds user 'drone', doesn't exist yet)
