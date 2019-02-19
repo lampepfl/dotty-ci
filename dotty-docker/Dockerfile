@@ -25,7 +25,7 @@ WORKDIR /var/cache/drone
 # Add ivy2 cache
 RUN git clone -b master --recursive https://github.com/lampepfl/dotty.git && \
     (cd dotty && \
-     sbt ";test:update ;dotty-bootstrapped/test:update ;sbt-dotty/scripted:update ;community-build/test" && \
+     sbt ";test:update ;dotty-bootstrapped/test:update ;sbt-dotty/scripted:update ;community-build/updateCommunityBuild" && \
      echo "dotty: $(git rev-parse HEAD)" >> /root/.versions) && \
     rm -rf dotty && \
     # Remove all published-local artifacts
