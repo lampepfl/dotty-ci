@@ -12,7 +12,7 @@ RUN apt-get update && \
     update-java-alternatives --set java-1.8.0-openjdk-amd64
 
 # Set sbt env variables
-ENV SBT_VERSION 1.2.3
+ENV SBT_VERSION 1.2.7
 ENV SBT_HOME /usr/local/sbt
 ENV PATH ${SBT_HOME}/bin:${PATH}
 
@@ -25,9 +25,11 @@ WORKDIR /var/cache/drone
 # Add ivy2 cache
 RUN git clone -b master --recursive https://github.com/lampepfl/dotty.git && \
     (cd dotty && \
-     sbt ";test:update ;dotty-bootstrapped/test:update ;sbt-dotty/scripted:update" && \
+     sbt ";test:update ;dotty-bootstrapped/test:update ;sbt-dotty/scripted:update ;community-build/updateCommunityBuild" && \
      echo "dotty: $(git rev-parse HEAD)" >> /root/.versions) && \
     rm -rf dotty && \
+    # Remove all published-local artifacts
+    rm -rf ~/.ivy2/local/ch.epfl.lamp && \
     mv ~/.ivy2 /var/cache/drone/ivy2 && \
     # Make cache rw by all users (drone adds user 'drone', doesn't exist yet)
     chmod -R 0777 /var/cache/drone/ivy2
