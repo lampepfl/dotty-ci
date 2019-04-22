@@ -39,9 +39,10 @@ RUN --mount=type=secret,id=sshkey,dst=/root/.ssh/id_rsa GIT_SSH_COMMAND="ssh -o 
 # Used by script/ci-sbt to determine how to run sbt
 ENV DRONE 1
 
+# `scalafix --version` is needed to download the dependencies of sbt-scalafix: https://github.com/scalacenter/scalafix/issues/946
 RUN (cd moocs && \
-     ./script/ci-sbt ";test:update" && ./script/ci-hook progfun2 && ./script/ci-hook parprog1 && ./script/ci-hook concpar && ./script/ci-hook reactive && \
-     # ./script/ci-hook bigdata && \ ## currently failing
+     ./script/ci-sbt ";scalafix --version;test:update" && \
+     ./script/ci-hook progfun2 && ./script/ci-hook parprog1 && ./script/ci-hook concpar && ./script/ci-hook reactive && ./script/ci-hook bigdata && \
      echo "moocs: $(git rev-parse HEAD)" >> /root/.versions) && \
     rm -rf moocs && \
     # Make cache rw by all users (drone adds user 'drone', doesn't exist yet)
