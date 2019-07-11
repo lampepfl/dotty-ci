@@ -25,7 +25,6 @@ The environment is defined by the [drone-server](drone/drone-server.yml) and
 [docker-compose](https://docs.docker.com/compose/reference/overview/)
 definition files.
 
-
 ### Starting / Restarting Drone ###
 
 On the central 'master' drone server:
@@ -43,6 +42,8 @@ $ docker-compose --file /etc/drone/drone-agents.yml up --force-recreate -d
 * `--file` sets the path of the docker-compose definition file.
 * `--force-recreate` recreates containers even if their configuration and image haven't changed.
 * `-d` runs containers in the background and prints new container names.
+
+A [Makefile](drone/Makefile) is provided for your convenience.
 
 ### Monitoring ###
 
