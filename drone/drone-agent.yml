@@ -4,7 +4,7 @@ services:
   drone-agent:
     image: drone/agent:1
     volumes:
-      - https://docs.drone.io/reference/
+      - /var/run/docker.sock:/var/run/docker.sock
     restart: always
     environment: # Refer to https://docs.drone.io/reference/ for documentation.
       - DRONE_RPC_SERVER=https://drone-ci-staging.epfl.ch
