@@ -7,7 +7,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     restart: always
     environment: # Refer to https://docs.drone.io/reference/ for documentation.
-      - DRONE_RPC_SERVER=https://drone-ci-staging.epfl.ch
+      - DRONE_RPC_SERVER=https://drone-ci.epfl.ch
       - DRONE_RPC_SECRET= # Secret
       - DRONE_RUNNER_NAME= # Local
       - DRONE_RUNNER_CAPACITY=4

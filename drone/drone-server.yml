@@ -9,7 +9,7 @@ services:
       - /var/lib/drone:/data
     restart: always
     environment: # Refer to https://docs.drone.io/reference/ for documentation.
-      - DRONE_SERVER_HOST=dotty-ci-staging.epfl.ch
+      - DRONE_SERVER_HOST=dotty-ci.epfl.ch
       - DRONE_SERVER_PROTO=https
       - DRONE_GITHUB_SERVER=https://github.com
       - DRONE_AGENTS_ENABLED=true
