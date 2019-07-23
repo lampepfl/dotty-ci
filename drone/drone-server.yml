@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  drone-server:
+    image: drone/drone:1
+    ports:
+      - 127.0.0.1:8000:80
+    volumes:
+      - /var/lib/drone:/data
+    restart: always
+    environment: # Refer to https://docs.drone.io/reference/ for documentation.
+      - DRONE_SERVER_HOST=dotty-ci.epfl.ch
+      - DRONE_SERVER_PROTO=https
+      - DRONE_GITHUB_SERVER=https://github.com
+      - DRONE_AGENTS_ENABLED=true
+      - DRONE_GITHUB_CLIENT_ID= # Secret
+      - DRONE_GITHUB_CLIENT_SECRET= # Secret
+      - DRONE_RPC_SECRET= # Secret

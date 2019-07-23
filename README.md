@@ -1,7 +1,8 @@
 Drone Testing
 ===================
 
-This repo contains the necessary infrastructure for testing using Drone.
+This repo contains the definition of the infrastructure used for dotty's CI,
+based [Drone](https://drone.io/) >= 1.0.0.
 
 Prerequisites
 -------------
@@ -14,25 +15,45 @@ To learn more about Compose refer to the [documentation](https://docs.docker.com
 Setting up Drone
 ----------------
 
-The [docker-compose.yml](drone/docker-compose.yml) file defines the docker configuration for our Drone application. The
-[docker-compose](https://docs.docker.com/compose/reference/overview/) CLI lets you manage your
-application life-cycle.
+We use a [multi-machine drone
+setup](https://docs.drone.io/installation/github/multi-machine/) where
+[lampsrv43](http://lampsrv43.epfl.ch/) acts as master (= drone-server) and
+lampsrv9 and lampsrv26 as runners (= drone-agent).
+
+The environment is defined by the [drone-server](drone/drone-server.yml) and
+[drone-agent](drone/drone-agent.yml)
+[docker-compose](https://docs.docker.com/compose/reference/overview/)
+definition files.
 
 ### Starting / Restarting Drone ###
 
+On the central 'master' drone server:
+
 ```bash
-$ ssh drone@lampsrv9.epfl.ch
-$ cd dotty-drone/drone/
-$ docker-compose up --force-recreate -d
+$ docker-compose --file /etc/drone/drone-server.yml up --force-recreate -d
 ```
 
-`force-recreate` recreates containers even if their configuration and image haven't changed.
-`d` runs containers in the background and prints new container names.
+On any drone agent:
+
+```bash
+$ docker-compose --file /etc/drone/drone-agents.yml up --force-recreate -d
+```
+
+* `--file` sets the path of the docker-compose definition file.
+* `--force-recreate` recreates containers even if their configuration and image haven't changed.
+* `-d` runs containers in the background and prints new container names.
+
+A [Makefile](drone/Makefile) is provided for your convenience.
 
 ### Monitoring ###
-http://tresormon.epfl.ch/munin/epfl.ch/lampsrv9.epfl.ch/cpu.html
+
+Agents:
+  * lamprv9: [CPU](http://tresormon.epfl.ch/munin/epfl.ch/lampsrv9.epfl.ch/cpu.html) [Memory](http://tresormon.epfl.ch/munin/epfl.ch/lampsrv9.epfl.ch/memory.html)
+  * lampsrv26: [CPU](http://tresormon.epfl.ch/munin/epfl.ch/lampsrv26.epfl.ch/cpu.html) [Memory](http://tresormon.epfl.ch/munin/epfl.ch/lampsrv26.epfl.ch/memory.html)
+
 
 ### Repo Installation ###
+
 The Dotty repo contains a
 [.drone.yml](https://github.com/lampepfl/dotty/blob/master/.drone.yml) file
 that contains the necessary settings for drone to run the CI.
