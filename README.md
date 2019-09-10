@@ -36,7 +36,7 @@ $ docker-compose --file /etc/drone/drone-server.yml up --force-recreate -d
 On any drone agent:
 
 ```bash
-$ docker-compose --file /etc/drone/drone-agents.yml up --force-recreate -d
+$ docker-compose --file /etc/drone/drone-agent.yml up --force-recreate -d
 ```
 
 * `--file` sets the path of the docker-compose definition file.
