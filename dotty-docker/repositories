@@ -1,4 +1,4 @@
 [repositories]
 local
-my-ivy-proxy-releases: http://scala-webapps.epfl.ch:8081/artifactory/central/, [organization]/[module]/(scala_[scalaVersion]/)(sbt_[sbtVersion]/)[revision]/[type]s/[artifact](-[classifier]).[ext]
+my-ivy-proxy-releases: http://scala-webapps.epfl.ch:8081/artifactory/sbt-plugin-releases/, [organization]/[module]/(scala_[scalaVersion]/)(sbt_[sbtVersion]/)[revision]/[type]s/[artifact](-[classifier]).[ext]
 my-maven-proxy-releases: http://scala-webapps.epfl.ch:8081/artifactory/central/
