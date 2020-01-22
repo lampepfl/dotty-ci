@@ -28,7 +28,7 @@ ADD ./repositories /root/.sbt/
 # so we must run the full community build which is slow.
 RUN git clone -b master --jobs 8 --recursive https://github.com/lampepfl/dotty.git && \
     (cd dotty && \
-     sbt ";test:update ;dotty-bootstrapped/test:update ;sbt-dotty/scripted:update ;community-build/test" && \
+     sbt ";test:update ;dotty-bootstrapped/test:update ;sbt-dotty/scripted:update ;sjsJUnitTests/test:update ;sjsJUnitTests/test:scalaJSIR ;community-build/test" && \
      echo "dotty: $(git rev-parse HEAD)" >> /root/.versions) && \
     rm -rf dotty && \
     rm -rf /root/.ivy2/local
