@@ -13,9 +13,6 @@ RUN apt-get update && \
     update-java-alternatives --set java-1.8.0-openjdk-amd64
 
 
-# Setup artifactory proxy used to cache requests to maven central
-ADD ./repositories /root/.sbt/
-
 # Install sbt
 ENV SBT_HOME /usr/local/sbt
 ENV PATH ${SBT_HOME}/bin:${PATH}
