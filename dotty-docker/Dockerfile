@@ -8,10 +8,13 @@ env TZ Europe/Zurich
 # Add packages to image, set default JDK version
 RUN apt-get update && \
     apt-get upgrade -y && \
-    # Use a PPA to get Java 15
+    # Use a PPA to get Java 16
     apt-get install -y software-properties-common && add-apt-repository ppa:openjdk-r/ppa && \
-    apt-get install -y bash curl git ssh htop openjdk-8-jdk-headless openjdk-15-jdk-headless \
-                       nano vim-tiny zile nodejs && \
+    apt-get install -y bash curl git ssh htop openjdk-8-jdk-headless openjdk-16-jdk-headless \
+                       nano vim-tiny zile && \
+    # Ubuntu 20.04 has Node 10 but Scala.js tests require >= 14 (cf https://github.com/lampepfl/dotty/pull/11818)
+    (curl -fsSL https://deb.nodesource.com/setup_14.x | bash -) && \
+    apt-get install -y nodejs && \
     update-java-alternatives --set java-1.8.0-openjdk-amd64
 
 
