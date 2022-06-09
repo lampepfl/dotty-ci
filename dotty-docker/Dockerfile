@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM ubuntu:22.04
 
 # The default locale is "POSIX" which is just ASCII.
 ENV LANG C.UTF-8
@@ -21,5 +21,5 @@ RUN apt-get update && \
 # Install sbt
 ENV SBT_HOME /usr/local/sbt
 ENV PATH ${SBT_HOME}/bin:${PATH}
-ENV SBT_VERSION 1.5.5
+ENV SBT_VERSION 1.6.2
 RUN curl -sL "https://github.com/sbt/sbt/releases/download/v$SBT_VERSION/sbt-$SBT_VERSION.tgz" | gunzip | tar -x -C /usr/local
