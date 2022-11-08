@@ -13,7 +13,7 @@ RUN apt-get update && \
     apt-get install -y bash curl git ssh htop openjdk-8-jdk-headless openjdk-17-jdk-headless \
                        nano vim-tiny zile && \
     # Ubuntu 20.04 has Node 10 but Scala.js tests require >= 14 (cf https://github.com/lampepfl/dotty/pull/11818)
-    (curl -fsSL https://deb.nodesource.com/setup_16.x | bash -) && \
+    (curl -fsSL https://deb.nodesource.com/setup_18.x | bash -) && \
     apt-get install -y nodejs && \
     update-java-alternatives --set java-1.8.0-openjdk-amd64
 
