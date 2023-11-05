@@ -11,7 +11,7 @@ RUN apt-get update && \
     # Use a PPA to get Java 17
     apt-get install -y software-properties-common && add-apt-repository ppa:openjdk-r/ppa && \
     apt-get install -y bash curl git ssh htop openjdk-8-jdk-headless openjdk-17-jdk-headless \
-                       nano vim-tiny zile && \
+                       openjdk-21-jdk-headless nano vim-tiny zile && \
     (curl -fsSL https://deb.nodesource.com/setup_18.x | bash -) && \
     apt-get install -y nodejs
 
