@@ -1,3 +1,9 @@
+
+> ⚠️ The following repository is no longer maintained. ⚠️
+> 
+> Pull Request https://github.com/scala/scala3/pull/19697 added all the necessary material related to the CI to the `scala/scala3` repository.
+
+
 # Drone Testing
 
 This repo contains the definition of the infrastructure used for dotty's CI,
